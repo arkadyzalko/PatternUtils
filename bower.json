@@ -1,0 +1,25 @@
+{
+  "name": "navigators",
+  "version": "0.0.1",
+  "authors": [
+    "Arkady Zalkowitsch <arkadyzalko@gmail.com>"
+  ],
+  "description": "Navigators Typescript Library.",
+  "keywords": [
+    "typescript",
+    "web-components",
+    "visitor",
+    "navigator"
+  ],
+  "main": "navigators.js",
+  "license": "MIT",
+  "homepage": "https://github.com/arkadyzalko/navigators/",
+  "ignore": [
+    "/.*",
+    "/tests/"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

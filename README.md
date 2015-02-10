@@ -1,2 +1,2 @@
-# visitor-navigators
-Visitor Navigator Library
+# navigators
+Navigator Typescript Library
