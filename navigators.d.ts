@@ -1,4 +1,4 @@
-declare module navigators {
+declare module visitorsAndNavigators {
     interface Visitor {
         visit: (part: Part) => void;
     }
@@ -10,11 +10,15 @@ declare module navigators {
         constructor(fnName: string);
         visit: (part: Part) => void;
     }
+    class LambdaVisitor implements Visitor {
+        fnName: string;
+        constructor(visit: (part: Part) => void);
+        visit: (part: Part) => void;
+    }
     class TopDownNavigator {
-        visitor: Visitor;
         compositeClass: any;
         children: string;
-        constructor(visitor: Visitor, compositeClass: any, children: string);
-        navigateAndApplyVisitor: (part: Part) => void;
+        constructor(compositeClass: any, children: string);
+        navigateAndApplyVisitor: (part: Part, visitor: Visitor) => void;
     }
 }

@@ -1,5 +1,5 @@
-var navigators;
-(function (navigators) {
+var visitorsAndNavigators;
+(function (visitorsAndNavigators) {
     var Part = (function () {
         function Part() {
             this.accept = function (visitor) {
@@ -8,7 +8,7 @@ var navigators;
         }
         return Part;
     })();
-    navigators.Part = Part;
+    visitorsAndNavigators.Part = Part;
     var MethodVisitor = (function () {
         function MethodVisitor(fnName) {
             this.visit = function (part) {
@@ -18,23 +18,29 @@ var navigators;
         }
         return MethodVisitor;
     })();
-    navigators.MethodVisitor = MethodVisitor;
+    visitorsAndNavigators.MethodVisitor = MethodVisitor;
+    var LambdaVisitor = (function () {
+        function LambdaVisitor(visit) {
+            this.visit = visit;
+        }
+        return LambdaVisitor;
+    })();
+    visitorsAndNavigators.LambdaVisitor = LambdaVisitor;
     var TopDownNavigator = (function () {
-        function TopDownNavigator(visitor, compositeClass, children) {
-            this.navigateAndApplyVisitor = function (part) {
-                part.accept(this.visitor);
+        function TopDownNavigator(compositeClass, children) {
+            this.navigateAndApplyVisitor = function (part, visitor) {
+                part.accept(visitor);
                 if (part instanceof this.compositeClass) {
                     for (var i in part[this.children]) {
                         this.navigateAndApplyVisitor(part[this.children][i]);
                     }
                 }
             };
-            this.visitor = visitor;
             this.compositeClass = compositeClass;
             this.children = children;
         }
         return TopDownNavigator;
     })();
-    navigators.TopDownNavigator = TopDownNavigator;
-})(navigators || (navigators = {}));
+    visitorsAndNavigators.TopDownNavigator = TopDownNavigator;
+})(visitorsAndNavigators || (visitorsAndNavigators = {}));
 //# sourceMappingURL=navigators.js.map

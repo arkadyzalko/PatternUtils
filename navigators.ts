@@ -1,4 +1,4 @@
-module navigators {
+module visitorsAndNavigators {
   export interface Visitor {
     visit: (part: Part) => void;
   }
@@ -19,19 +19,25 @@ module navigators {
     }
   }
 
+  export class LambdaVisitor implements Visitor {
+    fnName: string;
+    constructor(visit: (part: Part)=> void) {
+      this.visit = visit;
+    }
+    visit: (part: Part) => void;
+  }
+  
   export class TopDownNavigator {
-    visitor: Visitor;
     compositeClass: any;
     children: string;
 
-    constructor(visitor: Visitor, compositeClass: any, children: string) {
-      this.visitor = visitor;
+    constructor(compositeClass: any, children: string) {
       this.compositeClass = compositeClass;
       this.children = children;
     }
 
-    navigateAndApplyVisitor: (part: Part) => void = function(part: Part) {
-      part.accept(this.visitor);
+    navigateAndApplyVisitor: (part: Part, visitor: Visitor) => void = function(part: Part, visitor: Visitor) {
+      part.accept(visitor);
       if(part instanceof this.compositeClass) {
         for (var i in part[this.children]) {
           this.navigateAndApplyVisitor(part[this.children][i]);
