@@ -1,19 +1,19 @@
 {
-  "name": "navigators",
-  "version": "0.0.2",
+  "name": "PatternUtils",
+  "version": "0.0.3",
   "authors": [
     "Arkady Zalkowitsch <arkadyzalko@gmail.com>"
   ],
-  "description": "Navigators Typescript Library.",
+  "description": "PatternUtils Typescript Library.",
   "keywords": [
     "typescript",
     "web-components",
     "visitor",
     "navigator"
   ],
-  "main": "navigators.js",
+  "main": "lib.html",
   "license": "MIT",
-  "homepage": "https://github.com/arkadyzalko/navigators/",
+  "homepage": "https://github.com/arkadyzalko/PatternUtils/",
   "ignore": [
     "/.*",
     "/tests/"
