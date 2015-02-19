@@ -1,31 +1,6 @@
-var visitorsAndNavigators;
-(function (visitorsAndNavigators) {
-    var Part = (function () {
-        function Part() {
-            this.accept = function (visitor) {
-                visitor.visit(this);
-            };
-        }
-        return Part;
-    })();
-    visitorsAndNavigators.Part = Part;
-    var MethodVisitor = (function () {
-        function MethodVisitor(fnName) {
-            this.visit = function (part) {
-                part[this.fnName] instanceof Function ? part[this.fnName]() : null;
-            };
-            this.fnName = fnName;
-        }
-        return MethodVisitor;
-    })();
-    visitorsAndNavigators.MethodVisitor = MethodVisitor;
-    var LambdaVisitor = (function () {
-        function LambdaVisitor(visit) {
-            this.visit = visit;
-        }
-        return LambdaVisitor;
-    })();
-    visitorsAndNavigators.LambdaVisitor = LambdaVisitor;
+/// <reference path="visitors.ts" />
+var navigators;
+(function (navigators) {
     var TopDownNavigator = (function () {
         function TopDownNavigator(compositeClass, children) {
             this.navigateAndApplyVisitor = function (part, visitor) {
@@ -41,6 +16,6 @@ var visitorsAndNavigators;
         }
         return TopDownNavigator;
     })();
-    visitorsAndNavigators.TopDownNavigator = TopDownNavigator;
-})(visitorsAndNavigators || (visitorsAndNavigators = {}));
+    navigators.TopDownNavigator = TopDownNavigator;
+})(navigators || (navigators = {}));
 //# sourceMappingURL=navigators.js.map

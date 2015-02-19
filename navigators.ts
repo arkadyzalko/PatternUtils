@@ -1,32 +1,5 @@
-module visitorsAndNavigators {
-  export interface Visitor {
-    visit: (part: Part) => void;
-  }
-
-  export class Part {
-    accept: (vistor: Visitor) => void = function(visitor: Visitor) {
-      visitor.visit(this);
-    }  
-  }
-
-  export class MethodVisitor implements Visitor {
-    fnName: string;
-    constructor(fnName: string) {
-      this.fnName = fnName;
-    }
-    visit: (part: Part) => void = function(part: Part) {
-      part[this.fnName] instanceof Function ? part[this.fnName]() : null;
-    }
-  }
-
-  export class LambdaVisitor implements Visitor {
-    fnName: string;
-    constructor(visit: (part: Part)=> void) {
-      this.visit = visit;
-    }
-    visit: (part: Part) => void;
-  }
-  
+/// <reference path="visitors.ts" />
+module navigators {
   export class TopDownNavigator {
     compositeClass: any;
     children: string;
@@ -36,7 +9,7 @@ module visitorsAndNavigators {
       this.children = children;
     }
 
-    navigateAndApplyVisitor: (part: Part, visitor: Visitor) => void = function(part: Part, visitor: Visitor) {
+    navigateAndApplyVisitor: (part: visitors.Part, visitor: visitors.Visitor) => void = function(part: visitors.Part, visitor: visitors.Visitor) {
       part.accept(visitor);
       if(part instanceof this.compositeClass) {
         for (var i in part[this.children]) {
